@@ -533,7 +533,6 @@ var definePinchZoom = function () {
          */
         updateAspectRatio: function () {
             this.unsetContainerY();
-            // this.setContainerY(this.container.parentElement.offsetHeight);
             let parentHeight = this.container.parentElement.offsetHeight;
 
             if (parentHeight === 0) {
@@ -680,7 +679,7 @@ var definePinchZoom = function () {
         },
 
         setContainerY: function (y) {
-            return this.container.style.height = y + 'px';
+            return this.container.style.height = y;
         },
 
         unsetContainerY: function () {
