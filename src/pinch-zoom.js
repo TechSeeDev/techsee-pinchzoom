@@ -275,7 +275,7 @@ var definePinchZoom = function () {
 
             this.lastScale = newScale;
             this.update()
-            
+
             triggerEvent(this.el, this.options.mouseWheelEventName);
             if (typeof this.options.onMouseWheel == "function") {
             this.options.onMouseWheel(this, event);
@@ -533,7 +533,16 @@ var definePinchZoom = function () {
          */
         updateAspectRatio: function () {
             this.unsetContainerY();
-            this.setContainerY(this.container.parentElement.offsetHeight);
+            // this.setContainerY(this.container.parentElement.offsetHeight);
+            let parentHeight = this.container.parentElement.offsetHeight;
+
+            if (parentHeight === 0) {
+                parentHeight = window.getComputedStyle(this.container.parentElement).height;
+            } else {
+                parentHeight += "px";
+            }
+
+            this.setContainerY(parentHeight);
         },
 
         /**
@@ -544,7 +553,7 @@ var definePinchZoom = function () {
             var xZoomFactor = this.container.offsetWidth / this.el.offsetWidth;
             var yZoomFactor = this.container.offsetHeight / this.el.offsetHeight;
 
-            return Math.min(xZoomFactor, yZoomFactor);
+            return Math.min(xZoomFactor || 0, yZoomFactor || 0);
         },
 
         /**
@@ -592,7 +601,7 @@ var definePinchZoom = function () {
                 };
             });
         },
-        
+
         /**
          * Returns the pointer of an event relative to the container offset
          * @param event
@@ -976,14 +985,14 @@ var definePinchZoom = function () {
                     target.handleMouseWheel(event);
                 }
             });
-            
+
             el.addEventListener("mousedown", function (event) {
                 if(target.enabled) {
                     firstMove = true;
                     fingers = 1;
                 }
             }, { passive: true });
-            
+
             el.addEventListener('mousemove', function (event) {
                 if(target.enabled) {
                     if (firstMove) {

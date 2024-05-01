@@ -1,12 +1,12 @@
 {
-  "name": "pinch-zoom-js",
+  "name": "@techsee/pinch-zoom-js",
   "version": "2.3.5",
   "description": "Browser library for multi-touch gestures to zoom and drag on any DOM element.",
   "author": "Manuel Stofer",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/manuelstofer/pinchzoom.git"
+    "url": "https://github.com/TechSeeDev/techsee-pinchzoom.git"
   },
   "keywords": [
     "pinchzoom",
